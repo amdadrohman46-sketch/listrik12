@@ -61,12 +61,38 @@ training_columns_and_dtypes = {
 } 
  
 # Create an empty DataFrame with the correct columns and dtypes 
-final_input_df = 
-pd.DataFrame(columns=training_columns_and_dtypes.keys()) for col, dtype in training_columns_and_dtypes.items(): 
+final_input_df = pd.DataFrame(columns=training_columns_and_dtypes.keys()) 
+for col, dtype in training_columns_and_dtypes.items(): 
 final_input_df[col] = final_input_df[col].astype(dtype) 
 
 # Add a single row of data, initially all zeros/False 
-final_input_df.loc[0] = 0 for col, dtype in training_columns_and_dtypes.items(): if dtype == 'bool': final_input_df.loc[0, col] = False # Populate numerical features final_input_df.loc[0, 'kwh'] = df_input['kwh'][0] final_input_df.loc[0, 'ac_units'] = df_input['ac_units'][0] final_input_df.loc[0, 'ac_hours_per_day'] = df_input['ac_hours_per_day'][0] final_input_df.loc[0, 'family_size'] = df_input['family_size'][0] # Populate one-hot encoded categorical features selected_month_col = f"month_name_{df_input['month_name'][0]}" if selected_month_col in final_input_df.columns: final_input_df.loc[0, selected_month_col] = True selected_tariff_col = f"tariff_class_{df_input['tariff_class'][0]}" if selected_tariff_col in final_input_df.columns: 
+final_input_df.loc[0] = 0 
+ for col, dtype in training_columns_and_dtypes.items():
+  if dtype == 'bool': 
+   final_input_df.loc[0, col] = False 
+# Populate numerical features 
+final_input_df.loc[0, 'kwh'] = df_input['kwh'][0] 
+final_input_df.loc[0, 'ac_units'] = df_input['ac_units'][0] 
+final_input_df.loc[0, 'ac_hours_per_day'] = df_input['ac_hours_per_day'][0] 
+final_input_df.loc[0, 'family_size'] = df_input['family_size'][0] 
+
+# Populate one-hot encoded categorical features 
+selected_month_col = f"month_name_{df_input['month_name'][0]}" 
+if selected_month_col in final_input_df.columns: 
+ final_input_df.loc[0, selected_month_col] = True 
+ 
+selected_tariff_col = f"tariff_class_{df_input['tariff_class'][0]}" 
+ if selected_tariff_col in final_input_df.columns: 
 final_input_df.loc[0, selected_tariff_col] = True
 
-# Make prediction if st.sidebar.button('Prediksi Tagihan'): try: prediction = model.predict(final_input_df) # Use the new DataFrame name st.subheader('Hasil Prediksi Tagihan Listrik:') st.write(f"Tagihan Diprediksi: Rp {prediction[0]:,.2f}") except Exception as e: st.error(f"Terjadi kesalahan saat melakukan prediksi: {e}") st.exception(e) # Show full traceback 
+# Make prediction 
+if st.sidebar.button('Prediksi Tagihan'): 
+ try:
+  prediction = model.predict(final_input_df) 
+  
+# Use the new DataFrame name 
+st.subheader('Hasil Prediksi Tagihan Listrik:') 
+st.write(f"Tagihan Diprediksi: Rp {prediction[0]:,.2f}")
+ except Exception as e: 
+st.error(f"Terjadi kesalahan saat melakukan prediksi: {e}") 
+st.exception(e) # Show full traceback 
