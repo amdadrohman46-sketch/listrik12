@@ -10,8 +10,7 @@ loading method
 
 # Streamlit app title 
 st.title('Prediksi Tagihan Listrik Jakarta') 
-st.write('Aplikasi untuk memprediksi jumlah tagihan listrik berdasarkan 
-parameter yang diberikan.') 
+st.write('Aplikasi untuk memprediksi jumlah tagihan listrik berdasarkan parameter yang diberikan.') 
 
 # Sidebar for user inputs 
 st.sidebar.header('Input Parameter') 
