@@ -67,7 +67,7 @@ for col, dtype in training_columns_and_dtypes.items():
 
 # Add a single row of data, initially all zeros/False 
 final_input_df.loc[0] = 0 
- for col, dtype in training_columns_and_dtypes.items():
+for col, dtype in training_columns_and_dtypes.items():
   if dtype == 'bool': 
    final_input_df.loc[0, col] = False 
 # Populate numerical features 
