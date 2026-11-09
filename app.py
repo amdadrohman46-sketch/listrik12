@@ -63,7 +63,7 @@ training_columns_and_dtypes = {
 # Create an empty DataFrame with the correct columns and dtypes 
 final_input_df = pd.DataFrame(columns=training_columns_and_dtypes.keys()) 
 for col, dtype in training_columns_and_dtypes.items(): 
-final_input_df[col] = final_input_df[col].astype(dtype) 
+ final_input_df[col] = final_input_df[col].astype(dtype) 
 
 # Add a single row of data, initially all zeros/False 
 final_input_df.loc[0] = 0 
