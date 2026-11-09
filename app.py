@@ -82,8 +82,8 @@ if selected_month_col in final_input_df.columns:
  final_input_df.loc[0, selected_month_col] = True 
  
 selected_tariff_col = f"tariff_class_{df_input['tariff_class'][0]}" 
- if selected_tariff_col in final_input_df.columns: 
-final_input_df.loc[0, selected_tariff_col] = True
+if selected_tariff_col in final_input_df.columns: 
+ final_input_df.loc[0, selected_tariff_col] = True
 
 # Make prediction 
 if st.sidebar.button('Prediksi Tagihan'): 
